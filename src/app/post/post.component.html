@@ -1,0 +1,48 @@
+<div *ngFor="let post of posts" class="panel panel-default" >
+    <div class="panel-heading">
+        <span *ngIf= "post.modo_edit==false"
+            style="font-size: 18px;">
+            {{post.nome_pessoa}}
+        </span>
+        <input type="text" *ngIf="post.modo_edit" [(ngModel)]="post.nome_pessoa">
+        <span 
+            class="glyphicon glyphicon-trash" 
+            aria-hidden="true"
+            style="cursor:pointer; float:right; text-align: center; "
+            (click)="excluir(post)">
+        </span>
+        <span
+            class="glyphicon glyphicon-pencil"
+            aria-hidden="true"
+            style="cursor:pointer; float:right; text-align: center; "
+            (click)="editar(post)"
+            *ngIf="post.modo_edit==false">
+        </span>
+        <span
+            class="glyphicon glyphicon-ok"
+            aria-hidden="true"
+            style="cursor:pointer; float:right; text-align: center; "
+            (click)="concluir(post)"
+            *ngIf="post.modo_edit">
+        </span>
+        <span
+            class="glyphicon glyphicon-remove"
+            aria-hidden="true"
+            style="cursor:pointer; float:right; text-align: center; "
+            (click)="cancelar(post)"
+            *ngIf="post.modo_edit">
+        </span>
+    </div>
+
+    <div class="panel-body" *ngIf= "post.modo_edit==false">
+        {{post.texto}}
+    </div>
+    <input type="text" *ngIf="post.modo_edit" [(ngModel)]="post.texto">
+
+    <div class="panel-footer ">
+        <button (click)="like(post);" 
+            class= "glyphicon glyphicon-thumbs-up btn btn-default"> 
+            {{post.qtd_likes}} 
+        </button>   
+    </div>
+</div>
